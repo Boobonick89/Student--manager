@@ -44,6 +44,9 @@
             label5 = new Label();
             txtSearchName = new TextBox();
             txtSearchAge = new TextBox();
+            BtnSave = new Button();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            BtnLoad = new Button();
             SuspendLayout();
             // 
             // label1
@@ -184,11 +187,33 @@
             txtSearchAge.Size = new Size(133, 23);
             txtSearchAge.TabIndex = 15;
             // 
+            // BtnSave
+            // 
+            BtnSave.Location = new Point(192, 398);
+            BtnSave.Name = "BtnSave";
+            BtnSave.Size = new Size(75, 23);
+            BtnSave.TabIndex = 16;
+            BtnSave.Text = "Сохранить";
+            BtnSave.UseVisualStyleBackColor = true;
+            BtnSave.Click += BtnSave_Click;
+            // 
+            // BtnLoad
+            // 
+            BtnLoad.Location = new Point(285, 398);
+            BtnLoad.Name = "BtnLoad";
+            BtnLoad.Size = new Size(75, 23);
+            BtnLoad.TabIndex = 17;
+            BtnLoad.Text = "Загрузить";
+            BtnLoad.UseVisualStyleBackColor = true;
+            BtnLoad.Click += BtnLoad_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(BtnLoad);
+            Controls.Add(BtnSave);
             Controls.Add(txtSearchAge);
             Controls.Add(txtSearchName);
             Controls.Add(label5);
@@ -229,5 +254,8 @@
         private Label label5;
         private TextBox txtSearchName;
         private TextBox txtSearchAge;
+        private Button BtnSave;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Button BtnLoad;
     }
 }

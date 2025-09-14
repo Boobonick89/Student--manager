@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Security.Cryptography.X509Certificates;
+using System.Text.Json;
 
 namespace Student__manager
 {
@@ -118,6 +119,48 @@ namespace Student__manager
         {
             lstStudents.DataSource = null;
             lstStudents.DataSource = _students;
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            if (_students.Count == 0)
+            {
+                MessageBox.Show("Список пуст,сохранять нечего");
+                return;
+            }
+
+            string json = JsonSerializer.Serialize(_students, new JsonSerializerOptions
+            {
+                WriteIndented = true,
+            });
+
+            File.WriteAllText("Student-manager", json);
+
+            MessageBox.Show("Список сохранен");
+        }
+
+        private void BtnLoad_Click(object sender, EventArgs e)
+        {
+            if(! File.Exists("Student-manager"))
+            {
+                MessageBox.Show("Список не найден");
+                return;
+            }
+
+            string json = File.ReadAllText("Student-manager");
+            var data = JsonSerializer.Deserialize<BindingList<Student>>(json);
+
+            if(data != null)
+            {
+                _students.Clear();
+
+                foreach(var st in data)
+                {
+                    _students.Add(st);
+                }
+            }
+
+            MessageBox.Show("Список загружен");
         }
     }
 }
